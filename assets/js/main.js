@@ -39,7 +39,7 @@
       var done = function () {
         var old = btn.textContent;
         btn.textContent = 'Copied';
-        if (status) status.textContent = 'Email address copied to clipboard';
+        if (status) status.textContent = 'Copied to clipboard';
         setTimeout(function () { btn.textContent = old; if (status) status.textContent = ''; }, 1800);
       };
       if (navigator.clipboard && navigator.clipboard.writeText) {

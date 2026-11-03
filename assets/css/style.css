@@ -4,22 +4,22 @@
    ------------------------------------------------------------ */
 
 :root {
-  --bg: #F7F3EE;
-  --bg-tint: #EFE9E3;
+  --bg: #F4F7FA;
+  --bg-tint: #E8EEF4;
   --surface: #FFFFFF;
-  --ink: #2A2A35;
-  --muted: #62616F;
-  --line: rgba(42, 42, 53, 0.12);
-  --accent: #6E62A8;
+  --ink: #1F2A3C;
+  --muted: #566275;
+  --line: rgba(31, 42, 60, 0.12);
+  --accent: #3D5C96;
   --accent-ink: #FFFFFF;
-  --accent-soft: #E6E0F4;
+  --accent-soft: #DCE6F4;
 
-  --lav: #CFC6E8;
-  --sage: #CBDDD0;
-  --peach: #F2D3C4;
-  --sky: #CFE0EE;
+  --lav: #C9D6EE;   /* periwinkle */
+  --sage: #BFD8DF;  /* soft aqua-blue */
+  --peach: #EBDCC8; /* sand: the warm counterpart to the blues */
+  --sky: #D5E3F2;
 
-  --shadow: 0 1px 2px rgba(42, 42, 53, 0.04), 0 12px 32px -12px rgba(42, 42, 53, 0.14);
+  --shadow: 0 1px 2px rgba(31, 42, 60, 0.04), 0 12px 32px -12px rgba(31, 42, 60, 0.16);
   --radius: 20px;
   --radius-sm: 12px;
 
@@ -32,20 +32,20 @@
 }
 
 :root[data-theme="dark"] {
-  --bg: #171923;
-  --bg-tint: #1C1F2B;
-  --surface: #222536;
-  --ink: #ECE9F4;
-  --muted: #A5A3B7;
-  --line: rgba(236, 233, 244, 0.12);
-  --accent: #BBB0EA;
-  --accent-ink: #1B1D29;
-  --accent-soft: #2C2A44;
+  --bg: #0F1724;
+  --bg-tint: #131D2D;
+  --surface: #1A2638;
+  --ink: #E6ECF5;
+  --muted: #9DAABF;
+  --line: rgba(230, 236, 245, 0.12);
+  --accent: #8FB0E8;
+  --accent-ink: #0F1A2C;
+  --accent-soft: #223452;
 
-  --lav: #4A4470;
-  --sage: #3B5046;
-  --peach: #5A443F;
-  --sky: #3A4A5E;
+  --lav: #2E3F66;
+  --sage: #26485A;
+  --peach: #5A4C3C;
+  --sky: #2B3F58;
 
   --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 14px 36px -14px rgba(0, 0, 0, 0.55);
 }
@@ -99,10 +99,10 @@ h1, h2, h3, h4 { margin: 0; font-weight: 400; }
 .brand { display: inline-flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; }
 .brand-mark {
   display: grid; place-items: center; width: 34px; height: 34px;
-  border-radius: 10px; background: var(--lav); color: #2A2A35;
+  border-radius: 10px; background: var(--lav); color: #1F2A3C;
   font-family: var(--font-display); font-size: 0.95rem; font-weight: 500;
 }
-:root[data-theme="dark"] .brand-mark { color: #ECE9F4; }
+:root[data-theme="dark"] .brand-mark { color: #E6ECF5; }
 .brand-name { font-family: var(--font-display); font-size: 1.1rem; }
 
 .nav { display: flex; gap: 6px; margin-left: auto; }
@@ -251,9 +251,9 @@ h2 {
 .portrait img { width: 100%; height: 100%; object-fit: cover; position: relative; z-index: 1; }
 .portrait .monogram {
   position: absolute; inset: 0; display: grid; place-items: center;
-  font-family: var(--font-display); font-weight: 300; font-size: clamp(4rem, 12vw, 7rem); color: rgba(42, 42, 53, 0.55);
+  font-family: var(--font-display); font-weight: 300; font-size: clamp(4rem, 12vw, 7rem); color: rgba(31, 42, 60, 0.55);
 }
-:root[data-theme="dark"] .portrait .monogram { color: rgba(236, 233, 244, 0.6); }
+:root[data-theme="dark"] .portrait .monogram { color: rgba(230, 236, 245, 0.6); }
 .about-text h2 { margin-bottom: 22px; max-width: 14em; text-wrap: balance; }
 .about-text p { color: var(--muted); max-width: 36em; }
 .about-text p:first-of-type { color: var(--ink); }
