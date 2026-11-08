@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Javier Gómez — Level Design & Gameplay Programming</title>
-  <meta name="description" content="Portfolio of Javier Gómez González, video game student at CITM – UPC focused on level design and gameplay programming.">
+  <title>Javier Gómez | Level Design & Gameplay Programming</title>
+  <meta name="description" content="Portfolio of Javier Gómez González, level designer and gameplay programmer.">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#EAF4F4" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#071A2A" media="(prefers-color-scheme: dark)">
 
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Javier Gómez — Level Design & Gameplay Programming">
-  <meta property="og:description" content="Level design and gameplay programming. Student at CITM – UPC.">
+  <meta property="og:title" content="Javier Gómez | Level Design & Gameplay Programming">
+  <meta property="og:description" content="Level design and gameplay programming.">
   <meta property="og:url" content="https://javiergg14.github.io/">
 
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23A9D6E5'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='28' text-anchor='middle' fill='%23071A2A'%3EJG%3C/text%3E%3C/svg%3E">
@@ -46,7 +46,6 @@
       <nav class="nav" aria-label="Main">
         <a href="#projects">Projects</a>
         <a href="#skills">Skills</a>
-        <a href="#about">About</a>
         <a href="#contact">Contact</a>
       </nav>
       <button class="theme-toggle" type="button" aria-label="Switch between light and dark mode">
@@ -58,23 +57,33 @@
 
   <main id="main">
 
-    <!-- HERO -->
-    <section class="hero" id="top">
+    <!-- HERO + ABOUT -->
+    <section class="hero" id="top" aria-labelledby="hero-title">
       <div class="hero-glow" aria-hidden="true"></div>
       <div class="wrap">
         <p class="eyebrow reveal">Level design · Gameplay programming</p>
-        <h1 class="reveal">Hi, I'm Javier. I build levels and the gameplay that moves through&nbsp;them.</h1>
-        <p class="lead reveal">Video game student at CITM – UPC. I've worked on two team projects, with up to 30 people, and I'm looking for a studio where I can keep learning and add to the team.</p>
-        <div class="actions reveal">
-          <a class="btn btn-primary" href="#projects">See my work</a>
-          <a class="btn btn-ghost" href="#contact">Get in touch</a>
-          <!-- CV download button goes here once the CV is ready -->
+        <h1 class="reveal" id="hero-title">I design levels, and I write the code that makes them&nbsp;play.</h1>
+
+        <div class="about" id="about">
+          <div class="about-text reveal">
+            <p>I'm Javier. What I like most about games is the space the player moves through, and the code that decides how that movement feels.</p>
+            <p>I've worked on two team games: <em>The Apprentice</em> with around 16 people, where I programmed the main character, and <em>Son of Ithaca</em> with around 30, where I designed Level 1. I'm looking for a level design role in a studio that likes to build.</p>
+            <p>Outside of games I coach youth basketball teams, which has taught me a lot about organizing a group and leading it.</p>
+            <div class="actions">
+              <a class="btn btn-primary" href="assets/Javier-Gomez-CV.pdf" download="Javier-Gomez-CV.pdf">Download CV<span aria-hidden="true" style="margin-left:.5em">&darr;</span></a>
+              <a class="btn btn-ghost" href="https://www.linkedin.com/in/javier-g%C3%B3mez-gonz%C3%A1lez-98b409303" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true" style="margin-left:.4em">↗</span></a>
+            </div>
+            <dl class="facts">
+              <div><dt>Engines</dt><dd>Unity · Unreal</dd></div>
+              <div><dt>Code</dt><dd>C · C++ · C#</dd></div>
+            </dl>
+          </div>
+
+          <figure class="portrait reveal">
+            <!-- Future portrait: add <img src="assets/img/portrait.webp" width="1200" height="900" alt="..." loading="lazy" decoding="async"> here, before the monogram. -->
+            <span class="monogram" aria-hidden="true">JG</span>
+          </figure>
         </div>
-        <dl class="facts reveal">
-          <div><dt>Studying</dt><dd>CITM – UPC</dd></div>
-          <div><dt>Team projects</dt><dd>2, up to 30 people</dd></div>
-          <div><dt>Code</dt><dd>C · C++ · C#</dd></div>
-        </dl>
       </div>
     </section>
 
@@ -82,90 +91,183 @@
     <section class="section" id="projects" aria-labelledby="projects-title">
       <div class="wrap">
         <header class="section-head reveal">
-          <p class="eyebrow">Selected work</p>
+          <p class="eyebrow"><span class="sec-num">01</span>Selected work</p>
           <h2 id="projects-title">Projects</h2>
+          <p class="lead">Open one to see what I did, what it is built with and more images.</p>
         </header>
 
-        <!-- Son of Ithaca -->
-        <article class="project reveal" id="son-of-ithaca">
-          <div class="project-media media-peach">
-            <img src="assets/img/ithaca-apollo.webp" width="1200" height="641" alt="Telemachus wearing the Apollo mask and firing a light projectile from his sword, with a sun symbol to the left." loading="lazy" decoding="async">
-          </div>
-          <div class="project-body">
-            <p class="meta-line"><span>2026</span><span>3D action-adventure</span><span>~30 people</span></p>
-            <h3>Son of Ithaca</h3>
-            <p>An action-adventure inspired by <em>The Odyssey</em>. You play as Telemachus, searching for his lost father, and you earn the powers of the gods through equippable masks that open up combat options and unlock the puzzles that block the way.</p>
+        <article class="pcard reveal" id="son-of-ithaca">
+          <h3 class="pc-title">
+            <button class="pc-head" type="button" id="son-of-ithaca-btn" aria-expanded="false" aria-controls="son-of-ithaca-panel">
+              <span class="pc-media media-peach"><img src="assets/img/ithaca-apollo.webp" width="1200" height="641" alt="Telemachus wearing the Apollo mask and firing a light projectile from his sword, with a sun symbol to the left." loading="lazy" decoding="async"></span>
+              <span class="pc-summary">
+                <span class="pc-num" aria-hidden="true">01</span>
+                <span class="type type-design">Level design project</span>
+                <span class="pc-name">Son of Ithaca</span>
+                <span class="pc-sub">2026 · 3D action-adventure · ~30 people</span>
+                <span class="pc-blurb">Use the masks of the gods to fight and solve puzzles. I designed Level 1.</span>
+              </span>
+              <span class="pc-toggle" aria-hidden="true"><span class="t-open">Details</span><span class="t-close">Hide</span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+            </button>
+          </h3>
+          <div class="pc-panel" id="son-of-ithaca-panel" role="region" aria-labelledby="son-of-ithaca-btn">
+            <div class="pc-inner">
+              <div class="pc-top">
+                <div class="gallery" role="group" aria-roledescription="carousel" aria-label="Son of Ithaca images">
+              <div class="g-track" tabindex="0" aria-label="Images, scroll sideways">
+                <figure class="g-slide">
+                  <div class="g-frame" style="--g-bg:linear-gradient(135deg, var(--peach), var(--lav))"><img src="assets/img/ithaca-apollo.webp" width="1200" height="641" alt="Telemachus wearing the Apollo mask and firing a light projectile from his sword, with a sun symbol to the left." loading="lazy" decoding="async"></div>
+                  <figcaption>Apollo mask: light projectiles</figcaption>
+                </figure>
+                <figure class="g-slide">
+                  <div class="g-frame"><img src="assets/img/ithaca-ares-boulder.webp" width="1225" height="775" alt="Telemachus wearing the red Ares mask and pushing a large boulder." loading="lazy" decoding="async"></div>
+                  <figcaption>Ares mask: pushing heavy boulders</figcaption>
+                </figure>
+                <figure class="g-slide">
+                  <div class="g-frame"><img src="assets/img/ithaca-geyser.webp" width="1248" height="804" alt="Telemachus with a glowing blue sword and mask next to a water geyser." loading="lazy" decoding="async"></div>
+                  <figcaption>Telemachus and a water geyser</figcaption>
+                </figure>
+                <figure class="g-slide">
+                  <div class="g-frame"><img src="assets/img/ithaca-combat.webp" width="1209" height="697" alt="Telemachus fighting a skeleton soldier with a sword." loading="lazy" decoding="async"></div>
+                  <figcaption>Combat</figcaption>
+                </figure>
+                <figure class="g-slide">
+                  <div class="g-frame"><img src="assets/img/ithaca-enemies.webp" width="1400" height="1291" alt="Concept art of several skeleton soldiers with helmets, shields and weapons." loading="lazy" decoding="async"></div>
+                  <figcaption>Enemy designs: skeleton soldiers</figcaption>
+                </figure>
+                <figure class="g-slide">
+                  <div class="g-frame"><img src="assets/img/ithaca-creatures.webp" width="1070" height="902" alt="Concept art of two horned, goat-like creatures, one small and one large." loading="lazy" decoding="async"></div>
+                  <figcaption>Enemy designs: creatures</figcaption>
+                </figure>
+                <figure class="g-slide">
+                  <div class="g-frame"><img src="assets/img/ithaca-forest.webp" width="1400" height="778" alt="Illustration of a small character in a sunlit autumn forest with tree stumps and a fallen log." loading="lazy" decoding="async"></div>
+                  <figcaption>Environment art: the forest</figcaption>
+                </figure>
+                <figure class="g-slide">
+                  <div class="g-frame"><img src="assets/img/ithaca-editor.webp" width="1277" height="742" alt="The Wave Engine editor showing a forest scene with the player, the scene hierarchy and the asset browser." loading="lazy" decoding="async"></div>
+                  <figcaption>The Wave Engine editor</figcaption>
+                </figure>
+              </div>
+              <div class="g-nav">
+                <button class="g-btn g-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+                <button class="g-btn g-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+                <span class="g-count" aria-live="polite">1 / 8</span>
+              </div>
+            </div>
+                <div class="pc-text">
+                  <p>An action-adventure inspired by <em>The Odyssey</em>. You play as Telemachus, searching for his lost father, and you earn the powers of the gods through equippable masks that open up combat options and unlock the puzzles that block the way.</p>
+                  <p class="role"><strong>My role:</strong> level designer for Level 1, camera placement, and the base the enemies are built on.</p>
+                  <p class="meta-line"><span>Nobody Games Studio</span><span>~30 people</span></p>
+                </div>
+              </div>
 
-            <ul class="chips" aria-label="Technologies">
-              <li>Nobody Games Studio</li>
-              <li>Wave Engine (C++ / OpenGL)</li>
-              <li>Windows</li>
-            </ul>
+              <section class="pc-block" aria-labelledby="ith-did">
+                <h4 id="ith-did">What I did</h4>
+                <ul class="did"><li><span class="did-tag did-design">Level design</span><span><strong>Designed Level 1</strong>: its puzzles and the distribution of its zones.</span></li><li><span class="did-tag did-camera">Cameras</span><span><strong>Placed the cameras in Level 1</strong> to give it a more cinematic tone.</span></li><li><span class="did-tag did-code">Programming</span><span><strong>Programmed the enemy base</strong> that the game's enemies are built on.</span></li></ul>
+                <!-- Gameplay clips of Level 1, the cameras and the enemies go here, with the same markup as the clips in The Apprentice. -->
+              </section>
 
-            <h4>What I did</h4>
-            <ul class="points">
-              <li><strong>Designed Level 1</strong>: its puzzles and the distribution of its zones.</li>
-              <li><strong>Placed the cameras in Level 1</strong> to give it a more cinematic tone.</li>
-              <li><strong>Programmed the enemy base</strong> that the game's enemies are built on.</li>
-            </ul>
-
-            <div class="links">
-              <a class="link" href="https://nobody-games-studio.itch.io/son-of-ithaca" target="_blank" rel="noopener">Play on itch.io <span aria-hidden="true">↗</span></a>
-              <a class="link" href="https://github.com/NobodyGamesStudio/WaveEngine" target="_blank" rel="noopener">Engine source <span aria-hidden="true">↗</span></a>
+              <section class="pc-block" aria-labelledby="ith-tech">
+                <h4 id="ith-tech">Technologies</h4>
+                <dl class="tech"><div class="tech-group"><dt>Engine</dt><dd><ul class="chips"><li>Wave Engine</li><li>C++17</li><li>OpenGL 4.6</li><li>SDL3</li></ul><p class="tech-note">A custom engine built by the team&#x27;s engine group. I did not work on it.</p></dd></div>
+                <div class="tech-group"><dt>Gameplay scripting</dt><dd><ul class="chips"><li>Lua</li></ul></dd></div>
+                <div class="tech-group"><dt>Systems</dt><dd><ul class="chips"><li>PhysX</li><li>Recast Navigation</li><li>Wwise</li><li>NoesisGUI</li><li>Dear ImGui</li></ul><p class="tech-note">Physics, pathfinding, audio, in-game UI and the editor.</p></dd></div>
+                <div class="tech-group"><dt>Platform</dt><dd><ul class="chips"><li>Windows</li></ul></dd></div></dl>
+              </section>
+              <div class="links">
+                <a class="link" href="https://nobody-games-studio.itch.io/son-of-ithaca" target="_blank" rel="noopener">Play on itch.io <span aria-hidden="true">↗</span></a>
+                <a class="link" href="https://github.com/NobodyGamesStudio/WaveEngine" target="_blank" rel="noopener">Engine source <span aria-hidden="true">↗</span></a>
+              </div>
+              <p class="credit">Art © Nobody Games Studio.</p>
             </div>
           </div>
-
-          <div class="project-extra">
-            <h4>Masks of the gods</h4>
-            <p class="small">Each mask is both a combat tool and the key to a kind of obstacle.</p>
-            <ul class="masks">
-              <li>
-                <img src="assets/img/mask-hermes.webp" width="240" height="249" alt="Hermes mask icon" loading="lazy" decoding="async">
-                <strong>Hermes</strong>
-                <span>Float for a limited time and cross water.</span>
-              </li>
-              <li>
-                <img src="assets/img/mask-apollo.webp" width="240" height="204" alt="Apollo mask icon" loading="lazy" decoding="async">
-                <strong>Apollo</strong>
-                <span>Throw light projectiles that damage enemies and activate structures.</span>
-              </li>
-              <li>
-                <img src="assets/img/mask-ares.webp" width="240" height="259" alt="Ares mask icon" loading="lazy" decoding="async">
-                <strong>Ares</strong>
-                <span>Extra strength to push heavy boulders across the map.</span>
-              </li>
-            </ul>
-            <p class="credit">Art © Nobody Games Studio.</p>
-          </div>
         </article>
+        <article class="pcard reveal" id="the-apprentice">
+          <h3 class="pc-title">
+            <button class="pc-head" type="button" id="the-apprentice-btn" aria-expanded="false" aria-controls="the-apprentice-panel">
+              <span class="pc-media media-blue"><img src="assets/img/apprentice-cover.webp" width="1600" height="900" alt="Title screen of The Apprentice: the game&#x27;s name in ornate white lettering over a deep blue glow." loading="lazy" decoding="async"></span>
+              <span class="pc-summary">
+                <span class="pc-num" aria-hidden="true">02</span>
+                <span class="type type-code">Programming project</span>
+                <span class="pc-name">The Apprentice</span>
+                <span class="pc-sub">2025 · 2D Metroidvania · ~16 people</span>
+                <span class="pc-blurb">A slime that turns into the animals it meets. I programmed the main character.</span>
+              </span>
+              <span class="pc-toggle" aria-hidden="true"><span class="t-open">Details</span><span class="t-close">Hide</span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+            </button>
+          </h3>
+          <div class="pc-panel" id="the-apprentice-panel" role="region" aria-labelledby="the-apprentice-btn">
+            <div class="pc-inner">
+              <div class="pc-top">
+                <div class="gallery" role="group" aria-roledescription="carousel" aria-label="The Apprentice images">
+              <div class="g-track" tabindex="0" aria-label="Images, scroll sideways">
+                <figure class="g-slide">
+                  <div class="g-frame"><img src="assets/img/apprentice-cover.webp" width="1600" height="900" alt="Title screen of The Apprentice: the game&#x27;s name in ornate white lettering over a deep blue glow." loading="lazy" decoding="async"></div>
+                  <figcaption>Title screen</figcaption>
+                </figure>
+                <figure class="g-slide">
+                  <div class="g-frame"><img src="assets/img/apprentice-map.webp" width="1280" height="593" alt="Layout of one of the game&#x27;s maps, drawn in pale blue on black: a cave with corridors, shafts and platforms." loading="lazy" decoding="async"></div>
+                  <figcaption>Layout of one of the game&#x27;s maps</figcaption>
+                </figure>
+                <figure class="g-slide">
+                  <div class="g-frame"><img src="assets/img/apprentice-dash.webp" width="1280" height="720" alt="Ability screen for the dash, showing a weasel and the text Whisker Dash." loading="lazy" decoding="async"></div>
+                  <figcaption>Dash: Whisker Dash</figcaption>
+                </figure>
+                <figure class="g-slide">
+                  <div class="g-frame"><img src="assets/img/apprentice-doublejump.webp" width="1280" height="720" alt="Ability screen for the double jump, showing a bird and the text Flutter Jump." loading="lazy" decoding="async"></div>
+                  <figcaption>Double jump: Flutter Jump</figcaption>
+                </figure>
+                <figure class="g-slide">
+                  <div class="g-frame"><img src="assets/img/apprentice-glide.webp" width="1280" height="720" alt="Ability screen for the glide, showing a flying squirrel and the text Sky Drift." loading="lazy" decoding="async"></div>
+                  <figcaption>Glide: Sky Drift</figcaption>
+                </figure>
+                <figure class="g-slide">
+                  <div class="g-frame"><img src="assets/img/apprentice-walljump.webp" width="1280" height="720" alt="Ability screen for the wall jump, showing a hare and the text Glacier Kick." loading="lazy" decoding="async"></div>
+                  <figcaption>Wall jump: Glacier Kick</figcaption>
+                </figure>
+                <figure class="g-slide">
+                  <div class="g-frame"><img src="assets/img/apprentice-push.webp" width="1280" height="720" alt="Ability screen for pushing objects, showing an armadillo and the text Shove Shell." loading="lazy" decoding="async"></div>
+                  <figcaption>Push: Shove Shell</figcaption>
+                </figure>
+                <figure class="g-slide">
+                  <div class="g-frame"><img src="assets/img/apprentice-controls.webp" width="1280" height="720" alt="Controls screen listing basic controls and skills with their keys." loading="lazy" decoding="async"></div>
+                  <figcaption>Controls and skills screen</figcaption>
+                </figure>
+              </div>
+              <div class="g-nav">
+                <button class="g-btn g-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+                <button class="g-btn g-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+                <span class="g-count" aria-live="polite">1 / 8</span>
+              </div>
+            </div>
+                <div class="pc-text">
+                  <p>A story-driven Metroidvania in which you control a slime that can transform into animals it has met along the way. Lost in a forest twisted by magic, you gain new movement abilities and use them to explore, solve puzzles and fight bosses.</p>
+                  <p class="role"><strong>My role:</strong> gameplay programmer. I programmed the main character from start to finish.</p>
+                  <p class="meta-line"><span>Pangolin Studios</span><span>~16 people</span></p>
+                </div>
+              </div>
 
-        <!-- The Apprentice -->
-        <article class="project project-flip reveal" id="the-apprentice">
-          <div class="project-media media-blue">
-            <img src="assets/img/apprentice-cover.webp" width="1600" height="900" alt="Title screen of The Apprentice: the game's name in ornate white lettering over a deep blue glow." loading="lazy" decoding="async">
-          </div>
-          <div class="project-body">
-            <p class="meta-line"><span>2025</span><span>2D Metroidvania</span><span>~16 people</span></p>
-            <h3>The Apprentice</h3>
-            <p>A story-driven Metroidvania in which you control a slime that can transform into animals it has met along the way. Lost in a forest twisted by magic, you gain new movement abilities and use them to explore, solve puzzles and fight bosses.</p>
+              <section class="pc-block" aria-labelledby="app-did">
+                <h4 id="app-did">What I did</h4>
+                <ul class="did"><li><span class="did-tag did-code">Programming</span><span><strong>Programmed the main character from start to finish</strong> in C++, using SDL and Box2D.</span></li><li><span class="did-tag did-code">Programming</span><span>Movement kit: jump, double jump, glide, dash, wall slide, wall jump and pushing objects, each one switched on as the player unlocks it.</span></li><li><span class="did-tag did-code">Programming</span><span>Animation state system for the player, with priorities between states so the right animation always wins.</span></li></ul>
+                <h5 class="clips-title">The movement kit in motion</h5>
+                <ul class="clips"><li><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/clips/run-still.webp"><img src="assets/clips/run.webp" width="200" height="200" alt="The slime running" loading="lazy" decoding="async"></picture><span>Run</span></li><li><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/clips/jump-still.webp"><img src="assets/clips/jump.webp" width="220" height="252" alt="The slime jumping, falling and landing" loading="lazy" decoding="async"></picture><span>Jump</span></li><li><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/clips/doublejump-still.webp"><img src="assets/clips/doublejump.webp" width="300" height="240" alt="The slime turning into a bird for the double jump" loading="lazy" decoding="async"></picture><span>Double jump</span></li><li><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/clips/glide-still.webp"><img src="assets/clips/glide.webp" width="280" height="240" alt="The slime turning into a flying squirrel to glide" loading="lazy" decoding="async"></picture><span>Glide</span></li><li><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/clips/dash-still.webp"><img src="assets/clips/dash.webp" width="450" height="140" alt="The slime turning into a weasel to dash" loading="lazy" decoding="async"></picture><span>Dash</span></li><li><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/clips/wallslide-still.webp"><img src="assets/clips/wallslide.webp" width="200" height="200" alt="The slime sliding down a wall" loading="lazy" decoding="async"></picture><span>Wall slide</span></li><li><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/clips/walljump-still.webp"><img src="assets/clips/walljump.webp" width="244" height="220" alt="The slime turning into a hare to jump off a wall" loading="lazy" decoding="async"></picture><span>Wall jump</span></li><li><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/clips/push-still.webp"><img src="assets/clips/push.webp" width="372" height="200" alt="The slime turning into an armadillo to push an object" loading="lazy" decoding="async"></picture><span>Push</span></li></ul>
+                <p class="credit">Player animation states, played from the game's sprite sheet. Art by the Pangolin Studios team.</p>
+              </section>
 
-            <ul class="chips" aria-label="Technologies">
-              <li>Pangolin Studios · CITM – UPC</li>
-              <li>C++</li>
-              <li>SDL</li>
-              <li>Box2D</li>
-            </ul>
+              <section class="pc-block" aria-labelledby="app-tech">
+                <h4 id="app-tech">Technologies</h4>
+                <dl class="tech"><div class="tech-group"><dt>Language</dt><dd><ul class="chips"><li>C++</li></ul></dd></div>
+                <div class="tech-group"><dt>Libraries</dt><dd><ul class="chips"><li>SDL2</li><li>SDL2_image</li><li>SDL2_mixer</li><li>SDL2_ttf</li><li>Box2D</li></ul><p class="tech-note">Window, input, graphics and audio with SDL2. Physics with Box2D.</p></dd></div>
+                <div class="tech-group"><dt>Data and tools</dt><dd><ul class="chips"><li>Tiled (TMX maps)</li><li>XML with pugixml</li><li>FFmpeg</li><li>Tracy profiler</li></ul><p class="tech-note">Levels are Tiled maps. FFmpeg plays the intro cinematic.</p></dd></div>
+                <div class="tech-group"><dt>Build</dt><dd><ul class="chips"><li>Visual Studio</li><li>vcpkg</li><li>CMake</li></ul></dd></div></dl>
+              </section>
 
-            <h4>What I did</h4>
-            <ul class="points">
-              <li><strong>Programmed the main character from start to finish</strong> in C++, using SDL and Box2D.</li>
-              <li>Movement kit: jump, double jump, glide, dash, wall slide, wall jump and pushing objects, each one switched on as the player unlocks it.</li>
-              <li>Animation state system for the player, with priorities between states so the right animation always wins.</li>
-            </ul>
-
-            <div class="links">
-              <a class="link" href="https://oalonsoo.itch.io/the-apprentice" target="_blank" rel="noopener">Play on itch.io <span aria-hidden="true">↗</span></a>
-              <a class="link" href="https://github.com/oscaralonsoo/TheApprentice" target="_blank" rel="noopener">Source code <span aria-hidden="true">↗</span></a>
+              <div class="links">
+                <a class="link" href="https://oalonsoo.itch.io/the-apprentice" target="_blank" rel="noopener">Play on itch.io <span aria-hidden="true">↗</span></a>
+                <a class="link" href="https://github.com/oscaralonsoo/TheApprentice" target="_blank" rel="noopener">Source code <span aria-hidden="true">↗</span></a>
+              </div>
+              <p class="credit">Art © Pangolin Studios.</p>
             </div>
           </div>
         </article>
@@ -176,9 +278,9 @@
     <section class="section section-tint" id="skills" aria-labelledby="skills-title">
       <div class="wrap">
         <header class="section-head reveal">
-          <p class="eyebrow">What I work with</p>
+          <p class="eyebrow"><span class="sec-num">02</span>What I work with</p>
           <h2 id="skills-title">Skills &amp; tools</h2>
-          <p class="lead">The languages, engines and tools I build with, and what I bring to a team.</p>
+          <p class="lead">The languages, engines and tools I use, and what I can do in a team.</p>
         </header>
       </div>
 
@@ -191,13 +293,8 @@
               <li class="tool"><span class="tool-ico"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 0a12 12 0 1012 12A12 12 0 0012 0zm0 23.52A11.52 11.52 0 1123.52 12 11.52 11.52 0 0112 23.52zm7.13-9.791c-.206.997-1.126 3.557-4.06 4.942l-1.179-1.325-1.988 2a7.338 7.338 0 01-5.804-2.978 2.859 2.859 0 00.65.123c.326.006.678-.114.678-.66v-5.394a.89.89 0 00-1.116-.89c-.92.212-1.656 2.509-1.656 2.509a7.304 7.304 0 012.528-5.597 7.408 7.408 0 013.73-1.721c-1.006.573-1.57 1.507-1.57 2.29 0 1.262.76 1.109.984.923v7.28a1.157 1.157 0 00.148.256 1.075 1.075 0 00.88.445c.76 0 1.747-.868 1.747-.868V9.172c0-.6-.452-1.324-.905-1.572 0 0 .838-.149 1.484.346a5.537 5.537 0 01.387-.425c1.508-1.48 2.929-1.902 4.112-2.112 0 0-2.151 1.69-2.151 3.96 0 1.687.043 5.801.043 5.801.799.771 1.986-.342 3.059-1.441Z"/></svg></span><span>Unreal Engine</span></li>
               <li class="tool"><span class="tool-ico"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M22.394 6c-.167-.29-.398-.543-.652-.69L12.926.22c-.509-.294-1.34-.294-1.848 0L2.26 5.31c-.508.293-.923 1.013-.923 1.6v10.18c0 .294.104.62.271.91.167.29.398.543.652.69l8.816 5.09c.508.293 1.34.293 1.848 0l8.816-5.09c.254-.147.485-.4.652-.69.167-.29.27-.616.27-.91V6.91c.003-.294-.1-.62-.268-.91zM12 19.11c-3.92 0-7.109-3.19-7.109-7.11 0-3.92 3.19-7.11 7.11-7.11a7.133 7.133 0 016.156 3.553l-3.076 1.78a3.567 3.567 0 00-3.08-1.78A3.56 3.56 0 008.444 12 3.56 3.56 0 0012 15.555a3.57 3.57 0 003.08-1.778l3.078 1.78A7.135 7.135 0 0112 19.11zm7.11-6.715h-.79v.79h-.79v-.79h-.79v-.79h.79v-.79h.79v.79h.79zm2.962 0h-.79v.79h-.79v-.79h-.79v-.79h.79v-.79h.79v.79h.79z"/></svg></span><span>C++</span></li>
               <li class="tool"><span class="tool-ico txt">C#</span><span>C#</span></li>
-              <li class="tool"><span class="tool-ico"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16.5921 9.1962s-.354-3.298-3.627-3.39c-3.2741-.09-4.9552 2.474-4.9552 6.14 0 3.6651 1.858 6.5972 5.0451 6.5972 3.184 0 3.5381-3.665 3.5381-3.665l6.1041.365s.36 3.31-2.196 5.836c-2.552 2.5241-5.6901 2.9371-7.8762 2.9201-2.19-.017-5.2261.034-8.1602-2.97-2.938-3.0101-3.436-5.9302-3.436-8.8002 0-2.8701.556-6.6702 4.047-9.5502C7.444.72 9.849 0 12.254 0c10.0422 0 10.7172 9.2602 10.7172 9.2602z"/></svg></span><span>C</span></li>
               <li class="tool"><span class="tool-ico"><svg class="line" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="4" width="7" height="6" rx="1.5"/><rect x="14" y="14" width="7" height="6" rx="1.5"/><path d="M10 7h3a2 2 0 0 1 2 2v5"/></svg></span><span>Blueprints</span></li>
-              <li class="tool"><span class="tool-ico"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M4.348 0 .69 2.203v16.875l3.657-2.203h17.297V1.219c0-.67-.551-1.219-1.22-1.219H4.349zm18.297 3.75v14.125H4.627l-1.943 1.17v3.736c0 .67.55 1.219 1.218 1.219H23.31V3.75h-.664zm-14.471.025h2.937l1.885 7.508 1.977-7.48-.012-.028h2.857v9.354h-2.216v-6.04l-1.565 6.026v.014h-2.203l-1.656-6.28v6.28H8.174V3.775zm1.33 14.762h1.18l1.068 3.543h-.902l-.217-.773H9.568l-.197.773h-.88l1.013-3.543zm1.918 0h.932l.648 1.494.643-1.494h.894l-1.113 2.133v1.41h-.887v-1.406l-1.117-2.137zm3.826 0h1.18l1.068 3.543h-.9l-.217-.773h-1.065l-.197.773h-.88l1.011-3.543zm-5.156.582-.362 1.53h.73l-.368-1.53zm5.744 0-.36 1.53h.73l-.37-1.53z"/></svg></span><span>Maya</span></li>
-              <li class="tool"><span class="tool-ico txt">Zb</span><span>ZBrush</span></li>
-              <li class="tool"><span class="tool-ico txt">Ps</span><span>Photoshop</span></li>
               <li class="tool"><span class="tool-ico"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M13.09 23.549a1.54 1.54 0 0 1-2.18 0L.451 13.089a1.54 1.54 0 0 1 0-2.179l7.191-7.19 2.733 2.733a1.85 1.85 0 0 0 .964 2.326v6.66a1.849 1.849 0 1 0 1.54 0V8.957l2.508 2.508a1.85 1.85 0 1 0 1.09-1.09l-2.634-2.634a1.85 1.85 0 0 0-2.378-2.377L8.73 2.63 10.91.451a1.54 1.54 0 0 1 2.179 0l10.459 10.46a1.54 1.54 0 0 1 0 2.179z"/></svg></span><span>Git</span></li>
-              <li class="tool"><span class="tool-ico"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></span><span>GitHub</span></li>
             </ul>
           </div>
         </div>
@@ -219,32 +316,14 @@
       </div>
     </section>
 
-    <!-- ABOUT -->
-    <section class="section" id="about" aria-labelledby="about-title">
-      <div class="wrap about">
-        <figure class="portrait reveal">
-          <!-- Future portrait: add <img src="assets/img/portrait.webp" width="1200" height="900" alt="..." loading="lazy" decoding="async"> here, before the monogram. -->
-          <span class="monogram" aria-hidden="true">JG</span>
-        </figure>
-
-        <div class="about-text reveal">
-          <p class="eyebrow">About me</p>
-          <h2 id="about-title">Making worlds that are fun to move through</h2>
-          <p>I'm Javier Gómez González, a video game student at CITM – UPC. My focus is level design and gameplay programming: shaping spaces for the player, and writing the code that makes moving through them feel good.</p>
-          <p>I've taken part in two large team projects: a 2D Metroidvania with around 16 people and a 3D action-adventure with around 30.</p>
-          <p>I also have experience as a trainer and coach, working on team organization and group leadership, and I bring that into the teams I work with.</p>
-        </div>
-      </div>
-    </section>
-
     <!-- CONTACT -->
     <section class="section section-tint" id="contact" aria-labelledby="contact-title">
       <div class="wrap contact">
         <div class="contact-info">
           <header class="section-head reveal">
-            <p class="eyebrow">Let's talk</p>
+            <p class="eyebrow"><span class="sec-num">03</span>Let's talk</p>
             <h2 id="contact-title">Contact</h2>
-            <p class="lead">I'm looking for an internship in Barcelona. If you have an opportunity, a question or just want to say hi, I'd be glad to hear from you.</p>
+            <p class="lead">I'm looking for a level design role. If you have an opportunity or a question, write to me.</p>
           </header>
 
           <ul class="contact-list reveal">
@@ -259,6 +338,10 @@
               <button class="copy" type="button" data-copy="+34 682 47 46 31" aria-label="Copy phone number">Copy</button>
             </li>
             <li>
+              <span class="label">CV</span>
+              <a href="assets/Javier-Gomez-CV.pdf" download="Javier-Gomez-CV.pdf">Download PDF</a>
+            </li>
+            <li>
               <span class="label">LinkedIn</span>
               <a href="https://www.linkedin.com/in/javier-g%C3%B3mez-gonz%C3%A1lez-98b409303" target="_blank" rel="noopener">Javier Gómez González</a>
             </li>
@@ -271,12 +354,14 @@
         </div>
 
         <!--
-          Contact form. To receive messages directly in your inbox:
-          1) go to https://web3forms.com, enter javigg011205@gmail.com, and get your free access key by email;
-          2) paste it in data-access-key below.
-          While the key is empty, the form opens the visitor's email app with the message already written.
+          Contact form, sent with EmailJS (https://www.emailjs.com). Fill in the three values below:
+          1) Email Services > Add service (Gmail) > copy its Service ID
+          2) Email Templates > Create template > copy its Template ID
+             (template fields: {{from_name}}, {{reply_to}}, {{subject}}, {{message}}; "To email" = your address)
+          3) Account > General > copy your Public Key
+          While any of them is empty, the form opens the visitor's email app instead.
         -->
-        <form class="form reveal" id="contact-form" novalidate data-access-key="" data-fallback-email="javigg011205@gmail.com" aria-labelledby="form-title">
+        <form class="form reveal" id="contact-form" novalidate data-emailjs-service="" data-emailjs-template="" data-emailjs-key="" data-fallback-email="javigg011205@gmail.com" aria-labelledby="form-title">
           <h3 id="form-title">Send me a message</h3>
           <div class="hp" aria-hidden="true"><label>Leave this empty <input type="text" name="botcheck" tabindex="-1" autocomplete="off"></label></div>
 

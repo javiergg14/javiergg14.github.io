@@ -48,36 +48,154 @@
   });
 
   /* ---------- Skills carousel ----------
-     Each row holds one group of items. We clone it once so the track can slide by exactly
-     one group and loop seamlessly. With reduced motion (or no JS) the rows stay as static,
-     wrapped lists. */
+     The track holds two identical groups and slides by exactly one group (-50%), so the
+     loop is seamless only if one group is at least as wide as the visible row. On wide
+     screens a short list is not, and the track ran out of content before the loop point,
+     which showed as a jerk. So each group is topped up with extra (hidden) copies of its
+     items until it covers the viewport, and rebuilt when the width or the fonts change.
+     With reduced motion (or no JS) the rows stay as static, wrapped lists. */
   var SPEED = 42; // px per second: slow and calm
   var marquees = [].slice.call(document.querySelectorAll('.marquee'));
 
-  function setupMarquee(m) {
+  function buildMarquee(m) {
     var track = m.querySelector('.marquee-track');
     var group = m.querySelector('.marquee-group');
-    if (!track || !group || m.classList.contains('is-live')) return;
+    if (!track || !group) return;
+    if (!m._items) {
+      m._items = [].slice.call(group.children);
+      m._label = group.getAttribute('aria-label');
+    }
+    // reset to one group holding the original items
+    [].slice.call(track.children).forEach(function (g) { if (g !== group) track.removeChild(g); });
+    while (group.firstChild) group.removeChild(group.firstChild);
+    m._items.forEach(function (li) { group.appendChild(li); });
+    m.classList.add('is-live');
+
+    var need = m.clientWidth + 2;
+    var guard = 0;
+    while (group.scrollWidth < need && guard++ < 12) {
+      m._items.forEach(function (li) {
+        var c = li.cloneNode(true);
+        c.setAttribute('aria-hidden', 'true');
+        group.appendChild(c);
+      });
+    }
     var clone = group.cloneNode(true);
     clone.removeAttribute('aria-label');
     clone.setAttribute('aria-hidden', 'true');
     track.appendChild(clone);
-    m.classList.add('is-live');
-    setDuration(m);
-  }
-  function setDuration(m) {
-    var group = m.querySelector('.marquee-group');
-    var track = m.querySelector('.marquee-track');
-    if (!group || !track) return;
     track.style.setProperty('--dur', Math.max(20, group.scrollWidth / SPEED).toFixed(1) + 's');
   }
   if (!reduce) {
-    marquees.forEach(setupMarquee);
-    window.addEventListener('resize', function () { marquees.forEach(setDuration); });
-    if (document.fonts && document.fonts.ready) {
-      document.fonts.ready.then(function () { marquees.forEach(setDuration); });
+    var buildAll = function () { marquees.forEach(buildMarquee); };
+    buildAll();
+    var lastW = window.innerWidth, t;
+    window.addEventListener('resize', function () {
+      if (window.innerWidth === lastW) return; // ignore mobile address-bar height changes
+      lastW = window.innerWidth;
+      clearTimeout(t); t = setTimeout(buildAll, 150);
+    });
+    window.addEventListener('load', buildAll);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(buildAll);
+  }
+
+  /* ---------- Project cards (accordion) ---------- */
+  var cards = [].slice.call(document.querySelectorAll('.pcard'));
+  function setOpen(card, open) {
+    var btn = card.querySelector('.pc-head');
+    card.classList.toggle('is-open', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  cards.forEach(function (card) {
+    var btn = card.querySelector('.pc-head');
+    btn.addEventListener('click', function () {
+      setOpen(card, btn.getAttribute('aria-expanded') !== 'true');
+    });
+  });
+  function openFromHash() {
+    var id = decodeURIComponent((location.hash || '').slice(1));
+    if (!id) return;
+    var card = document.getElementById(id);
+    if (card && card.classList.contains('pcard')) {
+      setOpen(card, true);
+      setTimeout(function () { card.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' }); }, 60);
     }
   }
+  window.addEventListener('hashchange', openFromHash);
+  openFromHash();
+
+  /* ---------- Image galleries ---------- */
+  document.querySelectorAll('.gallery').forEach(function (g) {
+    var track = g.querySelector('.g-track');
+    var prev = g.querySelector('.g-prev');
+    var next = g.querySelector('.g-next');
+    var count = g.querySelector('.g-count');
+    var slides = g.querySelectorAll('.g-slide');
+    var n = slides.length;
+    // A copy of the first slide sits after the last one. Sliding onto it and then jumping
+    // back to the real first slide, unseen, makes the loop endless in one direction.
+    var copy = slides[0].cloneNode(true);
+    copy.setAttribute('aria-hidden', 'true');
+    copy.querySelectorAll('img').forEach(function (im) { im.loading = 'eager'; });
+    track.appendChild(copy);
+
+    var raw = function () {
+      var w = track.clientWidth || 1;
+      return Math.max(0, Math.min(n, Math.round(track.scrollLeft / w)));
+    };
+    var index = function () { return raw() % n; };
+    var update = function () {
+      count.textContent = (index() + 1) + ' / ' + n;
+    };
+    var wrapping = false;
+    var wrapIfNeeded = function () {
+      if (wrapping || raw() < n) return;
+      if (track.scrollLeft < n * track.clientWidth - 2) return; // wait until it has fully arrived
+      wrapping = true;
+      track.style.scrollSnapType = 'none';
+      track.scrollLeft = 0;
+      requestAnimationFrame(function () { track.style.scrollSnapType = ''; wrapping = false; update(); });
+    };
+    var go = function (d) {
+      var i = Math.max(0, Math.min(n, raw() + d));
+      track.scrollTo({ left: i * track.clientWidth, behavior: reduce ? 'auto' : 'smooth' });
+    };
+    prev.addEventListener('click', function () { go(-1); });
+    next.addEventListener('click', function () { go(1); });
+    track.addEventListener('scroll', function () { window.requestAnimationFrame(function () { update(); wrapIfNeeded(); }); }, { passive: true });
+    track.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { e.preventDefault(); go(1); }
+      else if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1); }
+    });
+    window.addEventListener('resize', update);
+    update();
+
+    /* Autoplay: advances every few seconds while the gallery is on screen and its card is
+       open, and loops endlessly. It stops for hover, focus, touch, a manual change, a
+       hidden tab or reduced motion. */
+    var INTERVAL = 4000;
+    var paused = reduce, hover = false, focused = false, visible = false, holdUntil = 0, timer = 0;
+    var card = g.closest('.pcard');
+
+    var hold = function () { holdUntil = Date.now() + INTERVAL * 1.6; };
+    var step = function () {
+      if (paused || hover || focused || !visible || document.hidden || Date.now() < holdUntil) return;
+      if (card && !card.classList.contains('is-open')) return;
+      track.scrollTo({ left: (raw() + 1) * track.clientWidth, behavior: 'smooth' });
+    };
+    timer = setInterval(step, INTERVAL);
+    g.addEventListener('mouseenter', function () { hover = true; });
+    g.addEventListener('mouseleave', function () { hover = false; hold(); });
+    g.addEventListener('focusin', function () { focused = true; });
+    g.addEventListener('focusout', function () { focused = false; hold(); });
+    g.addEventListener('pointerdown', hold);
+    prev.addEventListener('click', hold);
+    next.addEventListener('click', hold);
+    track.addEventListener('keydown', hold);
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) { visible = es[0].isIntersecting; }, { threshold: 0.4 }).observe(g);
+    } else { visible = true; }
+  });
 
   /* ---------- Custom cursor ----------
      Only for devices with a mouse. A dot follows the pointer exactly, a ring follows with
@@ -128,7 +246,7 @@
     var TEXT = 'input, textarea, select, [contenteditable="true"]';
     var EXT = 'a[target="_blank"]';
     var LINK = 'a, button, summary, [role="button"], label';
-    var SOFT = '.tool, .project-media';
+    var SOFT = '.tool, .pc-media, .g-frame, .clips li';
 
     function setState(target) {
       var next = '';
@@ -201,7 +319,7 @@
   }
 
   /* ---------- Contact form ----------
-     With a Web3Forms access key in data-access-key the message goes straight to the inbox
+     With EmailJS keys in the data-emailjs-* attributes the message goes straight to the inbox
      without leaving the page. Without one it opens the visitor's email app with the message
      already written, so it works from day one. */
   var form = document.getElementById('contact-form');
@@ -238,10 +356,12 @@
       };
       if (form.elements.botcheck && form.elements.botcheck.value) return; // bots fill the hidden field
 
-      var key = form.getAttribute('data-access-key');
+      var service = form.getAttribute('data-emailjs-service');
+      var template = form.getAttribute('data-emailjs-template');
+      var key = form.getAttribute('data-emailjs-key');
       var to = form.getAttribute('data-fallback-email');
 
-      if (!key) {
+      if (!service || !template || !key) {
         var body = data.message + '\n\n— ' + data.name + ' (' + data.email + ')';
         window.location.href = 'mailto:' + to + '?subject=' + encodeURIComponent(data.subject) +
           '&body=' + encodeURIComponent(body);
@@ -251,24 +371,24 @@
 
       submit.disabled = true;
       say('Sending…');
-      fetch('https://api.web3forms.com/submit', {
+      fetch('https://api.emailjs.com/api/v1.0/email/send', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          access_key: key,
-          from_name: 'Portfolio contact form',
-          name: data.name,
-          email: data.email,
-          subject: data.subject,
-          message: data.message
+          service_id: service,
+          template_id: template,
+          user_id: key,
+          template_params: {
+            from_name: data.name,
+            reply_to: data.email,
+            subject: data.subject,
+            message: data.message
+          }
         })
-      }).then(function (r) { return r.json(); }).then(function (res) {
-        if (res && res.success) {
-          form.reset();
-          say('Thanks, ' + data.name.split(' ')[0] + '! Your message has been sent.', 'ok');
-        } else {
-          throw new Error('rejected');
-        }
+      }).then(function (r) {
+        if (!r.ok) throw new Error('rejected');
+        form.reset();
+        say('Thanks, ' + data.name.split(' ')[0] + '! Your message has been sent.', 'ok');
       }).catch(function () {
         say('Something went wrong. You can write to ' + to + ' directly.', 'err');
       }).then(function () { submit.disabled = false; });
