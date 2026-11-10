@@ -157,8 +157,17 @@
       requestAnimationFrame(function () { track.style.scrollSnapType = ''; wrapping = false; update(); });
     };
     var go = function (d) {
-      var i = Math.max(0, Math.min(n, raw() + d));
-      track.scrollTo({ left: i * track.clientWidth, behavior: reduce ? 'auto' : 'smooth' });
+      var w = track.clientWidth;
+      var i = raw() + d;
+      if (i < 0) { // before the first image: hop, unseen, to the copy after the last and slide back from there
+        track.style.scrollSnapType = 'none';
+        track.scrollLeft = n * w;
+        track.style.scrollSnapType = '';
+        i = n - 1;
+        wrapping = true; // keep the loop jump from firing while we slide back
+        setTimeout(function () { wrapping = false; }, 900);
+      }
+      track.scrollTo({ left: Math.min(n, i) * w, behavior: reduce ? 'auto' : 'smooth' });
     };
     prev.addEventListener('click', function () { go(-1); });
     next.addEventListener('click', function () { go(1); });
@@ -395,3 +404,18 @@
     });
   }
 })();
+
+/* Trailer: click loads the YouTube player in place (falls back to the link without JS) */
+document.querySelectorAll('.trailer[data-yt]').forEach(function (box) {
+  var link = box.querySelector('.trailer-play');
+  if (!link) return;
+  link.addEventListener('click', function (e) {
+    e.preventDefault();
+    var f = document.createElement('iframe');
+    f.src = 'https://www.youtube-nocookie.com/embed/' + box.dataset.yt + '?autoplay=1&rel=0';
+    f.title = box.dataset.title || 'Trailer';
+    f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+    f.allowFullscreen = true;
+    box.replaceChildren(f);
+  });
+});
